@@ -1,0 +1,112 @@
+#include<process.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<dos.h>
+#include<conio.h>
+#include<bios.h>
+#define Node struct node
+
+Node
+{char nData;
+ Node *strpNext;
+ Node *strpPre;
+ };
+
+extern char *name;
+extern Node *strpFirst=NULL;
+extern Node *strpRear=NULL;
+extern Node *strpNow=NULL;
+extern Node *CreatNode(char nValue);
+extern Node *etFirst=NULL;
+extern Node *etRear=NULL;
+extern Node *etNow=NULL;
+extern Node *CreatNode_f(char nValue);
+extern Node *CreatEtNode(int nValue);
+
+void textform(char *info)
+{
+ int i,x,y;
+ char buf1[30*14*2];
+ x=wherex();
+ y=wherey();
+ gettext(25,10,54,13,buf1);
+ window(25,10,54,13);
+ textbackground(15);
+ textcolor(0);
+ putch(0xda);
+ for(i=26;i<=53;i++)
+ putch(0xc4);
+ putch(0xbf);
+ putch(0xb3);
+ for(i=2;i<=29;i++)
+  putch(32);
+ putch(0xb3);
+ putch(0xc0);
+ for(i=26;i<=53;i++)
+  putch(0xc4);
+ putch(0xd9);
+ gotoxy(5,2);
+ cprintf(info);
+ getch();
+ puttext(25,10,54,13,buf1);
+ gotoxy(x,y);
+ return;
+}
+
+void About(void)
+{int x,y;
+ char buf1[30*6*2];
+ x=wherex();
+ y=wherey();
+ gettext(25,10,54,15,buf1);
+ textcolor(128);
+ window(25,10,54,10);
+ textbackground(1);
+ clrscr();
+ window(25,11,54,11);
+ textbackground(2);
+ clrscr();
+ cprintf("      YeDiTor  Alpha1.0   ");
+ window(25,12,54,12);
+ textbackground(3);
+ clrscr();
+ cprintf("    for Windows98/XP or Dos");
+ window(25,13,54,13);
+ textbackground(4);
+ clrscr();
+ textcolor(0);
+ window(25,14,54,14);
+ textbackground(5);
+ clrscr();
+ cprintf("  Programming: 2Yang 1Cong ");
+ window(25,15,54,15);
+ textbackground(6);
+ clrscr();
+ cprintf("  Copyright:(C) 2004 Hust");
+ getch();
+ textcolor(15);
+ textbackground(0);
+ window(2,2,80,25);
+ puttext(25,10,54,15,buf1);
+ gotoxy(x,y);
+ return;
+}
+
+void box(int startx,int starty,int high,int width)
+{
+   int i;
+   gotoxy(startx,starty);
+   putch(0xda);
+   for(i=startx+1;i<width;i++)putch(0xc4);
+   putch(0xbf);
+   for(i=starty+1;i<high;i++)
+     {
+     gotoxy(startx,i);putch(0xb3);
+     gotoxy(width,i);putch(0xb3);
+     }
+   gotoxy(startx,high);
+   putch(0xc0);
+   for(i=startx+1;i<width;i++)putch(0xc4);
+   putch(0xd9);
+   return;
+}
